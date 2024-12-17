@@ -8,7 +8,7 @@
         "price_per_kwh": "Preț per kWh"
         },
         "description": "Configurați valorile pentru contorul de gaz.",
-        "title": "Configurare Contor Gaz"
+        "title": "Configurare GasMeter Pro"
     },
     "init": {
         "data": {
@@ -16,7 +16,7 @@
         "gas_pcs": "Puterea calorifică (PCS)",
         "price_per_kwh": "Preț per kWh"
         },
-        "title": "Reconfigurare Contor Gaz",
+        "title": "Reconfigurare GasMeter Pro",
         "description": "Actualizați valorile pentru contorul de gaz."
     }
     },
@@ -32,7 +32,7 @@
         "gas_pcs": "Puterea calorifică (PCS)",
         "price_per_kwh": "Preț per kWh"
         },
-        "title": "Opțiuni Contor Gaz",
+        "title": "Opțiuni GasMeter Pro",
         "description": "Actualizați valorile și prețul per kWh pentru senzor."
     }
     }
