@@ -1,0 +1,9 @@
+{
+  "name": "GasMeter Pro",
+  "content_in_root": false,
+  "domains": ["gasmeter"],
+  "iot_class": "local_polling",
+  "render_readme": true,
+  "zip_release": false,
+  "homeassistant": "2023.0.0"
+}

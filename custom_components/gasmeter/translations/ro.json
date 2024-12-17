@@ -1,0 +1,48 @@
+{
+"config": {
+    "step": {
+    "user": {
+        "data": {
+        "gas_meter_reading": "Index contor (m³)",
+        "gas_pcs": "Puterea calorifică (PCS)",
+        "price_per_kwh": "Preț per kWh"
+        },
+        "description": "Configurați valorile pentru contorul de gaz.",
+        "title": "Configurare Contor Gaz"
+    },
+    "init": {
+        "data": {
+        "gas_meter_reading": "Index contor (m³)",
+        "gas_pcs": "Puterea calorifică (PCS)",
+        "price_per_kwh": "Preț per kWh"
+        },
+        "title": "Reconfigurare Contor Gaz",
+        "description": "Actualizați valorile pentru contorul de gaz."
+    }
+    },
+    "error": {
+    "invalid_number": "Introduceți o valoare validă pentru câmpuri."
+    }
+},
+"options": {
+    "step": {
+    "init": {
+        "data": {
+        "gas_meter_reading": "Index contor (m³)",
+        "gas_pcs": "Puterea calorifică (PCS)",
+        "price_per_kwh": "Preț per kWh"
+        },
+        "title": "Opțiuni Contor Gaz",
+        "description": "Actualizați valorile și prețul per kWh pentru senzor."
+    }
+    }
+},
+"entity": {
+    "sensor": {
+    "gas_meter_price_m3": {
+        "name": "Preț pe m³",
+        "description": "Calculează prețul pe metru cub de gaz."
+    }
+    }
+}
+}

@@ -1,0 +1,12 @@
+{
+  "domain": "gasmeter",
+  "name": "GasMeter Pro",
+  "version": "1.0.0",
+  "documentation": "https://github.com/cnecrea/gasmeter",
+  "requirements": [],
+  "dependencies": [],
+  "codeowners": ["@cnecrea"],
+  "iot_class": "local_polling",
+  "config_flow": true,
+  "translations": "translations"
+}
