@@ -30,12 +30,17 @@ class GasMeterConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 )
 
                 return self.async_create_entry(
-                    title="Contor Gaz",
+                    title="GasMeter Pro",
                     data={
                         "gas_meter_reading": gas_meter_reading,
                         "gas_pcs": gas_pcs,
                         "price_per_kwh": price_per_kwh,
                     },
+                    options={
+                        "gas_meter_reading_entity": "input_number.gas_meter_reading",
+                        "gas_pcs_entity": "input_number.gas_pcs",
+                        "price_per_kwh_entity": "input_number.price_per_kwh",
+                    }
                 )
             except ValueError:
                 errors["base"] = "invalid_number"
@@ -60,7 +65,7 @@ class GasMeterOptionsFlowHandler(config_entries.OptionsFlow):
 
     def __init__(self, config_entry):
         """Initialize the options flow handler."""
-        self._entry_id = config_entry.entry_id  # Salvăm doar entry_id
+        self._entry_id = config_entry.entry_id  # Stocăm doar entry_id, nu întregul config_entry
 
     async def async_step_init(self, user_input=None):
         """Manage the options for the Gas Meter integration."""
@@ -69,16 +74,21 @@ class GasMeterOptionsFlowHandler(config_entries.OptionsFlow):
         # Obținem config_entry folosind entry_id
         config_entry = self.hass.config_entries.async_get_entry(self._entry_id)
 
-        # Citim valorile actuale din input_number și ConfigEntry
+        # Preluăm friendly_name pentru input_number
+        gas_meter_reading_name = self._get_friendly_name("input_number.gas_meter_reading", "Corecție index contor")
+        gas_pcs_name = self._get_friendly_name("input_number.gas_pcs", "Puterea calorifică")
+        price_per_kwh_name = self._get_friendly_name("input_number.price_per_kwh", "Preț pe kWh")
+
+        # Citim valorile actuale
         gas_meter_reading = await self._get_current_input_value("input_number.gas_meter_reading")
         gas_pcs = await self._get_current_input_value("input_number.gas_pcs")
         price_per_kwh = config_entry.options.get("price_per_kwh", 0.2910)
 
         if user_input is not None:
             try:
-                gas_meter_reading = float(user_input["gas_meter_reading"])
-                gas_pcs = float(user_input["gas_pcs"])
-                price_per_kwh = float(user_input["price_per_kwh"])
+                gas_meter_reading = float(user_input[gas_meter_reading_name])
+                gas_pcs = float(user_input[gas_pcs_name])
+                price_per_kwh = float(user_input[price_per_kwh_name])
 
                 if any(v < 0 for v in [gas_meter_reading, gas_pcs, price_per_kwh]):
                     raise ValueError("Values must be positive")
@@ -107,14 +117,21 @@ class GasMeterOptionsFlowHandler(config_entries.OptionsFlow):
                 errors["base"] = "invalid_number"
                 _LOGGER.error("Invalid number entered in options flow: %s", user_input)
 
-        # Afișăm formularul cu valorile actuale din input_number și ConfigEntry
+        # Afișăm formularul cu nume user-friendly și valori curente
         data_schema = vol.Schema({
-            vol.Required("gas_meter_reading", default=gas_meter_reading): vol.All(vol.Coerce(float), vol.Range(min=0)),
-            vol.Required("gas_pcs", default=gas_pcs): vol.All(vol.Coerce(float), vol.Range(min=0)),
-            vol.Required("price_per_kwh", default=price_per_kwh): vol.All(vol.Coerce(float), vol.Range(min=0)),
+            vol.Required(gas_meter_reading_name, default=gas_meter_reading): vol.All(vol.Coerce(float), vol.Range(min=0)),
+            vol.Required(gas_pcs_name, default=gas_pcs): vol.All(vol.Coerce(float), vol.Range(min=0)),
+            vol.Required(price_per_kwh_name, default=price_per_kwh): vol.All(vol.Coerce(float), vol.Range(min=0)),
         })
 
         return self.async_show_form(step_id="init", data_schema=data_schema, errors=errors)
+
+    def _get_friendly_name(self, entity_id, default_name):
+        """Retrieve the friendly name for an entity."""
+        state = self.hass.states.get(entity_id)
+        if state and "friendly_name" in state.attributes:
+            return state.attributes["friendly_name"]
+        return default_name
 
     async def _get_current_input_value(self, entity_id):
         """Helper to get the current state of an input_number entity."""
@@ -123,9 +140,7 @@ class GasMeterOptionsFlowHandler(config_entries.OptionsFlow):
             _LOGGER.debug("Fetched current value for %s: %s", entity_id, state.state)
             return float(state.state)
 
-        # Fallback la ConfigEntry.options dacă input_number nu există
+        # Fallback la ConfigEntry.options
         config_entry = self.hass.config_entries.async_get_entry(self._entry_id)
-        key = entity_id.split(".")[-1]  # Extragerea cheii finale (gas_meter_reading sau gas_pcs)
-        fallback = config_entry.options.get(key, 0.0)
-        _LOGGER.warning("State for %s is unavailable. Using fallback: %s", entity_id, fallback)
+        fallback = config_entry.options.get(entity_id.split(".")[-1], 0.0)
         return fallback
