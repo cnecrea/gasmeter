@@ -167,7 +167,7 @@ class GasMeterConsumptionSensor(SensorEntity):
 
     def _calculate_state(self):
         try:
-            self._state = round(self._gas_meter_reading * self._gas_pcs, 3)
+            self._state = "{:.3f}".format(self._gas_meter_reading * self._gas_pcs)
         except Exception as e:
             _LOGGER.error("Error calculating consumption state: %s", e)
             self._state = None
