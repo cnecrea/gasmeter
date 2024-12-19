@@ -113,7 +113,7 @@ class GasMeterPriceSensor(SensorEntity):
 
     @property
     def icon(self):
-        return "mdi:gas-cylinder"
+        return "mdi:cube"
 
 
 class GasMeterConsumptionSensor(SensorEntity):
