@@ -1,0 +1,48 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "data": {
+          "gas_meter_reading": "Gaszählerstand (m³)",
+          "gas_pcs": "Heizwert (PCS)",
+          "price_per_kwh": "Preis pro kWh"
+        },
+        "description": "Konfigurieren Sie die Werte für den Gaszähler.",
+        "title": "GasMeter Pro Konfiguration"
+      },
+      "init": {
+        "data": {
+          "gas_meter_reading": "Gaszählerstand (m³)",
+          "gas_pcs": "Heizwert (PCS)",
+          "price_per_kwh": "Preis pro kWh"
+        },
+        "title": "GasMeter Pro Neukonfiguration",
+        "description": "Aktualisieren Sie die Werte für den Gaszähler."
+      }
+    },
+    "error": {
+      "invalid_number": "Bitte geben Sie einen gültigen Wert für die Felder ein."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "gas_meter_reading": "Gaszählerstand (m³)",
+          "gas_pcs": "Heizwert (PCS)",
+          "price_per_kwh": "Preis pro kWh"
+        },
+        "title": "GasMeter Pro Optionen",
+        "description": "Aktualisieren Sie die Werte und den Preis pro kWh für den Sensor."
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "gas_meter_price_m3": {
+        "name": "Preis pro m³",
+        "description": "Berechnet den Preis pro Kubikmeter Gas."
+      }
+    }
+  }
+}
