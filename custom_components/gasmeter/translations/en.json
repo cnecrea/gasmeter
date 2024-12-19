@@ -1,0 +1,48 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "data": {
+          "gas_meter_reading": "Gas Meter Index (m³)",
+          "gas_pcs": "Calorific Value (PCS)",
+          "price_per_kwh": "Price per kWh"
+        },
+        "description": "Configure the values for the gas meter.",
+        "title": "GasMeter Pro Configuration"
+      },
+      "init": {
+        "data": {
+          "gas_meter_reading": "Gas Meter Index (m³)",
+          "gas_pcs": "Calorific Value (PCS)",
+          "price_per_kwh": "Price per kWh"
+        },
+        "title": "GasMeter Pro Reconfiguration",
+        "description": "Update the values for the gas meter."
+      }
+    },
+    "error": {
+      "invalid_number": "Please enter a valid value for the fields."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "gas_meter_reading": "Gas Meter Index (m³)",
+          "gas_pcs": "Calorific Value (PCS)",
+          "price_per_kwh": "Price per kWh"
+        },
+        "title": "GasMeter Pro Options",
+        "description": "Update the values and the price per kWh for the sensor."
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "gas_meter_price_m3": {
+        "name": "Price per m³",
+        "description": "Calculates the price per cubic meter of gas."
+      }
+    }
+  }
+}
