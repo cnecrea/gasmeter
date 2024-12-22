@@ -9,7 +9,7 @@
 ✅ Real-time calculation of gas price and consumption.  
 ✅ Provides two sensors:
    - **`sensor.pret_pe_m3`**: Gas price per cubic meter (RON/m³).  
-   - **`sensor.gas_meter_consum_in_kwh`**: Gas consumption in kilowatt-hours (kWh).  
+   - **`sensor.consum_in_kwh`**: Gas consumption in kilowatt-hours (kWh).  
 
 ✅ Configurable directly through the Home Assistant UI.  
 ✅ Syncs with `input_number` entities for manual overrides.
