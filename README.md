@@ -110,6 +110,18 @@ entities:
 - Values updated manually in UI (input_number) are reflected automatically in the sensors.
 - Restarting Home Assistant does not reset values.
 
+---
+## ☕ Support the Developer
+
+If you enjoyed this integration and want to support the work behind it, **buy me a coffee**! 🫶  
+It costs nothing, and your contribution helps with future development. 🙌  
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20the%20developer-orange?style=for-the-badge&logo=buy-me-a-coffee)](https://www.buymeacoffee.com/cnecrea)
+
+Thank you for your support, and I truly appreciate every gesture of encouragement! 🤗
+
+---
+
  ## 🧑‍💻 Contributions
 
 Contributions are welcome! Feel free to submit a pull request or report issues [here](https://github.com/cnecrea/gasmeter/issues).
